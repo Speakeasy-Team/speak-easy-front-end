@@ -1,0 +1,11 @@
+{
+  "name": "speak-easy-front-end",
+  "version": "1.0.0",
+  "description": "the front end for the speak easy app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "eli",
+  "license": "ISC"
+}
