@@ -1,4 +1,4 @@
 import React from "react";
-import Greeting from "./greeting";
+import App from "./containers/App";
 
-React.render(<Greeting name="Eli"/>, document.body);
+React.render(<App />, document.body);
