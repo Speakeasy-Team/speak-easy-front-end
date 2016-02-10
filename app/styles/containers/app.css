@@ -1,6 +1,25 @@
+@import "normalize.css/normalize.css";
+@value variables: "../base/variables.css";
+@value base-background-color from variables;
+
 .app {
-  margin: auto;
-  height: 200px;
-  width: 200px;
-  background-color: red;
+  height: 100vh;
+  background-color: base-background-color;
+}
+
+.nav {
+  height: 4em;
+  width: 100%;
+}
+
+.header {
+  margin: 0;
+  padding: .3em;
+  color: black;
+}
+
+.nav {
+}
+
+.right {
 }

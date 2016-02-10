@@ -1,0 +1,22 @@
+.container {
+  composes: form from '../patterns/form.css';
+  width: 30%;
+  margin: auto;
+}
+
+.header {
+  margin: 0;
+  padding-bottom: 1em;
+  text-align: center;
+}
+
+.input {
+  margin: .5em;
+}
+
+.group {
+}
+
+.submit {
+  composes: button from '../patterns/button.css';
+}

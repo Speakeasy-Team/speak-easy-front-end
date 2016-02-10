@@ -1,0 +1,28 @@
+@value base-font-family: helvetica;
+@value heading-font-family: base-font-family;
+
+@value base-font-size: 1em;
+
+@value base-line-height: 1.5;
+@value heading-line-height: 1.2;
+
+@value base-border-radius: 3px;
+@value base-spacing: calc(base-line-height * 1em);
+@value small-spacing: calc(base-spacing / 2);
+@value base-z-index: 0;
+
+@value blue: #1565c0;
+@value dark-gray: #333;
+@value medium-gray: #999;
+@value light-gray: #ddd;
+
+@value base-font-color: dark-gray;
+@value action-color: blue;
+
+@value base-border-color: light-gray;
+@value base-border: 1px solid base-border-color;
+
+@value base-background-color: #F9FCF5;
+
+@value base-duration: 150ms;
+@value base-timing: ease;
