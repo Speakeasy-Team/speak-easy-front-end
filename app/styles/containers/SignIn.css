@@ -1,8 +1,16 @@
+@value variables: "../base/variables.css";
+@value base-border from variables;
+
 .container {
   composes: form from '../patterns/form.css';
+  composes: round-border from '../patterns/border.css';
   width: 70%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
   max-width: 30em;
+  background-color: white;
+  padding: 2.2em;
 }
 
 .header {

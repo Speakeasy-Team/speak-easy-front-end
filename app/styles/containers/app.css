@@ -1,6 +1,8 @@
 @import "normalize.css/normalize.css";
 @value variables: "../base/variables.css";
 @value base-background-color from variables;
+@value base-border from variables;
+@value orange from variables;
 
 .app {
   height: 100vh;
@@ -8,8 +10,9 @@
 }
 
 .nav {
-  height: 4em;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header {
@@ -17,15 +20,5 @@
   padding: .3em;
   color: black;
   float: left;
-}
-
-.nav {
-  display: inline-block;
-}
-
-.hamburger {
-  float: right;
-  margin: 0;
-  padding: .3em;
-  font-size: 1.5em;
+  color: orange;
 }

@@ -1,0 +1,11 @@
+@value variables: "../base/variables.css";
+@value base-border from variables;
+
+.round-border {
+  border: base-border;
+  border-radius: 12px;
+}
+
+.border {
+  border: base-border;
+}

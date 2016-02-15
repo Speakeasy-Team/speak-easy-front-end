@@ -21,7 +21,7 @@
   white-space: nowrap;
   &:hover,
   &:focus {
-    background-color: color(#1565c0 shade(20%));
+    background-color: color(#ffc966 shade(20%));
     color: #fff;
   }
   &:disabled {
