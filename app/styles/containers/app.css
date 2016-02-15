@@ -16,10 +16,16 @@
   margin: 0;
   padding: .3em;
   color: black;
+  float: left;
 }
 
 .nav {
+  display: inline-block;
 }
 
-.right {
+.hamburger {
+  float: right;
+  margin: 0;
+  padding: .3em;
+  font-size: 1.5em;
 }

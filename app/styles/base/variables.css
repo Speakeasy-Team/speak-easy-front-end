@@ -22,7 +22,7 @@
 @value base-border-color: light-gray;
 @value base-border: 1px solid base-border-color;
 
-@value base-background-color: #F9FCF5;
+@value base-background-color: #FEFEFA;
 
 @value base-duration: 150ms;
 @value base-timing: ease;
