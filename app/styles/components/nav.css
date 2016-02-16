@@ -1,0 +1,15 @@
+.nav-list-item {
+  list-style-type: none;
+  text-align: center;
+  margin: 0;
+  font-size: 1.5em;
+  padding: .5em;
+  &:hover {
+    background-color: white;
+  }
+}
+
+.nav {
+  margin: 0;
+  padding: 0;
+}
