@@ -16,9 +16,11 @@
 @value medium-gray: #999;
 @value light-gray: #ddd;
 @value orange: #FFC966;
+@value light-orange: (color(#ffc966 shade(20%)));
 
 @value base-font-color: dark-gray;
 @value action-color: orange;
+@value active-color: light-orange;
 
 @value base-border-color: light-gray;
 @value base-border: 1px solid base-border-color;

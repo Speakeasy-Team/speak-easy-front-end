@@ -1,8 +1,8 @@
-import React from "React";
+import React from "react";
 import CSSModules from "react-css-modules";
-import styles from "../styles/components/nav.css"
+import styles from "../styles/components/nav.css";
 
-class Nav extends React.Component {
+class Navigation extends React.Component {
   render () {
     return (
       <ul styleName="nav">
@@ -17,4 +17,4 @@ class Nav extends React.Component {
   }
 }
 
-export default CSSModules(Nav, styles);
+export default CSSModules(Navigation, styles);

@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import CSSModules from "react-css-modules";
 import styles from "../styles/components/hamburger.css"
 
@@ -9,8 +9,10 @@ class Hamburger extends React.Component {
   }
 
   render () {
+    let style = this.props.active ? "active-hamburger" : "hamburger";
+
     return (
-      <a styleName="hamburger" onClick={this.handleClick.bind(this)}>
+      <a styleName={style} onClick={this.handleClick.bind(this)}>
         &#9776;
       </a>
     );

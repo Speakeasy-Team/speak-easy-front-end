@@ -23,9 +23,6 @@
   margin: .5em;
 }
 
-.group {
-}
-
 .submit {
   composes: button from '../patterns/button.css';
 }
