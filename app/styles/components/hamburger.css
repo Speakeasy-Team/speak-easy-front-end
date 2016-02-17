@@ -1,7 +1,18 @@
+@value variables: "../base/variables.css";
+@value active-color, action-color, base-duration, base-timing from variables;
+
 .hamburger {
   float: right;
   margin: 0;
   padding: .3em;
   font-size: 1.5em;
-  color: orange;
+  color: action-color;
+
+  transition: transform base-duration base-timing;
+}
+
+.active-hamburger {
+  composes: hamburger;
+
+  transform: rotate(90deg);
 }

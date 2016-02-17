@@ -1,13 +1,12 @@
 import React from "react";
-import styles from "../styles/containers/app.css";
+import styles from "../styles/containers/root.css";
 import CSSModules from "react-css-modules";
 import { connect } from "react-redux";
 import { toggleHamburger } from "../actions";
-import Nav from "../components/Nav";
-import SignIn from "./SignIn";
+import Navigation from "../components/Navigation";
 import Hamburger from "../components/Hamburger";
 
-class App extends React.Component {
+class Root extends React.Component {
   handleClick() {
     const { dispatch, hamburgerToggled } = this.props;
 
@@ -22,24 +21,20 @@ class App extends React.Component {
     dispatch(toggleHamburger());
   }
 
-  renderHamburger() {
-    const { hamburgerToggled } = this.props;
-
-    return <Hamburger onClick={this.onHamburgerClick.bind(this)} />
-  }
-
   renderNav() {
     const { hamburgerToggled } = this.props;
 
-    if (hamburgerToggled) { return <Nav /> }
+    if (hamburgerToggled) { return <Navigation /> }
   }
 
   render () {
+    const { hamburgerToggled } = this.props;
+
     return (
       <div styleName="app">
         <nav styleName="nav">
           <h1 styleName="header">Easy Speak</h1>
-          {this.renderHamburger()}
+          <Hamburger active={hamburgerToggled} onClick={this.onHamburgerClick.bind(this)} />
         </nav>
         {this.renderNav()}
         <div onClick={this.handleClick.bind(this)}>
@@ -52,8 +47,8 @@ class App extends React.Component {
 
 const select = (state) => {
   return {
-    hamburgerToggled: state.hamburgerToggled || false
+    hamburgerToggled: state.root.hamburgerToggled || false
   }
-}
+};
 
-export default connect(select)(CSSModules(App, styles));
+export default connect(select)(CSSModules(Root, styles));

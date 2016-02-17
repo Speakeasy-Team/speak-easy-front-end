@@ -1,5 +1,5 @@
 @value variables: "../base/variables.css";
-@value action-color, base-border-radius, base-font-family, base-font-size, small-spacing, base-spacing, base-duration, base-timing from variables;
+@value active-color, action-color, base-border-radius, base-font-family, base-font-size, small-spacing, base-spacing, base-duration, base-timing from variables;
 
 .button {
   appearance: none;
@@ -21,7 +21,7 @@
   white-space: nowrap;
   &:hover,
   &:focus {
-    background-color: color(#ffc966 shade(20%));
+    background-color: active-color;
     color: #fff;
   }
   &:disabled {
