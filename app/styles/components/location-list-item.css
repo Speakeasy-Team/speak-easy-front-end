@@ -1,0 +1,18 @@
+@value variables: "../base/variables.css";
+@value base-border from variables;
+
+.container {
+  border-top: base-border;
+  border-bottom: base-border;
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.inner-container {
+  margin: 1em;
+}
+
+.image {
+  width: 100%;
+}

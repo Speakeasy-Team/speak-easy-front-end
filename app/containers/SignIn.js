@@ -1,6 +1,6 @@
 import React from "react";
 import CSSModules from "react-css-modules";
-import styles from "../styles/containers/sign_in.css";
+import styles from "../styles/containers/sign-in.css";
 import { authorize } from "../actions";
 import { reduxForm } from "redux-form";
 
@@ -16,27 +16,29 @@ class SignIn extends React.Component {
 
     return (
       <form styleName="container" onSubmit={this.handleSubmission.bind(this)}>
-        <h1 styleName="header">Sign In</h1>
+        <div styleName="inner-container">
+          <h1 styleName="header">Sign In</h1>
 
-        <label name="email">
-          Email
-          <input
-            type="text"
-            styleName="input"
-            {...email}
-          />
-        </label>
+          <label name="email">
+            Email
+            <input
+              type="text"
+              styleName="input"
+              {...email}
+            />
+          </label>
 
-        <label name="password">
-          Password
-          <input
-            type="password"
-            styleName="input"
-            {...password}
-          />
-        </label>
+          <label name="password">
+            Password
+            <input
+              type="password"
+              styleName="input"
+              {...password}
+            />
+          </label>
 
-        <input type="submit" value="Sign in" styleName="submit" />
+          <input type="submit" value="Sign in" styleName="submit" />
+        </div>
       </form>
     );
   };

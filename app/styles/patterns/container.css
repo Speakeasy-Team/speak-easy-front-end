@@ -1,0 +1,9 @@
+.container {
+  composes: round-border from './border.css';
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  max-width: 30em;
+  background-color: white;
+}
