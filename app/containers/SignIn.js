@@ -1,7 +1,7 @@
 import React from "react";
 import CSSModules from "react-css-modules";
 import styles from "../styles/containers/sign_in.css";
-import { changeEmail, changePassword, authorize } from "../actions";
+import { authorize } from "../actions";
 import { reduxForm } from "redux-form";
 
 class SignIn extends React.Component {
