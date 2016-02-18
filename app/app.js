@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 import Root from "./containers/Root";
 import SignIn from "./containers/SignIn";
-import Welcome from "./components/Welcome";
+import Locations from "./containers/Locations";
 
 const store = configureStore();
 
@@ -15,8 +15,8 @@ render((
     <Router history={browserHistory}>
       <Route path="/" component={Root}>
         <IndexRoute component={SignIn} />
+        <Route path="/locations" component={Locations} />
       </Route>
-      <Route path="/welcome" component={Welcome} />
     </Router>
   </Provider>
 ), document.getElementById('main'))

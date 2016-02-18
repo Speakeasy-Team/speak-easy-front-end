@@ -1,0 +1,7 @@
+.container {
+  composes: container from "../patterns/container.css";
+}
+
+.header {
+  text-align: center;
+}

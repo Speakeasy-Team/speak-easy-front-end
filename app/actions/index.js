@@ -1,8 +1,10 @@
 import { browserHistory } from 'react-router';
-
-export const TOGGLE_HAMBURGER = "TOGGLE_HAMBURGER";
-export const REQUEST_AUTHORIZATION = "REQUEST_AUTHORIZATION";
-export const RECEIVE_AUTHORIZATION = "RECEIVE_AUTHORIZATION";
+import {
+  TOGGLE_HAMBURGER,
+  REQUEST_AUTHORIZATION,
+  RECEIVE_AUTHORIZATION,
+  API_URL
+} from "../constants"
 
 const api_url = "http://localhost:4000";
 
@@ -22,7 +24,7 @@ export function authorize(email, password) {
   return dispatch => {
     dispatch(requestAuthorization());
 
-    return fetch(`${api_url}/sessions/`, buildAuthRequest(email, password))
+    return fetch(`${API_URL}/sessions/`, buildAuthRequest(email, password))
       .then((response) => {
         if (response.ok) {
           return response
@@ -32,7 +34,7 @@ export function authorize(email, password) {
       })
       .then(res => res.json())
       .then(json => dispatch(receiveAuthorization(json)))
-      .then(() => browserHistory.push("/welcome"))
+      .then(() => browserHistory.push("/locations"))
       .catch(reason => console.log(reason))
       .done
   }

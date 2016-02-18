@@ -26,6 +26,7 @@
     display: block;
     font-family: base-font-family;
     font-size: base-font-size;
+    margin: small-spacing 0;
   }
 
   input[type="email"],

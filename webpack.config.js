@@ -15,6 +15,10 @@ module.exports = {
     html: "./index.html",
   },
 
+  devServer: {
+    historyApiFallback: true
+  },
+
   module: {
     loaders: [
       {
