@@ -17,6 +17,7 @@ export function requestAuthorization(email, password) {
 }
 
 export function receiveAuthorization(json) {
+  window.localStorage.setItem("jwt", json.token);
   return { type: RECEIVE_AUTHORIZATION, data: json }
 }
 

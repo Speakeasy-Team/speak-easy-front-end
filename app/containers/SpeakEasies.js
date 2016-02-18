@@ -5,6 +5,7 @@ import _ from "lodash";
 import styles from "../styles/containers/speak-easy.css";
 import { loadSpeakEasies, tapSpeakEasy } from "../actions/speakEasy";
 import SpeakEasyListItem from "../components/SpeakEasyListItem";
+import AddSpeakEasyButton from "../components/AddSpeakEasyButton";
 
 class Location extends React.Component {
   componentDidMount() {
@@ -26,10 +27,16 @@ class Location extends React.Component {
         return <SpeakEasyListItem
           key={speakEasy.id}
           speakEasy={speakEasy}
-          activeId={activeId}
+          active={speakEasy.id === activeId}
           onClick={this.handleSpeakEasyTap.bind(this)}
         />;
       })
+    );
+  }
+
+  renderAddNewButtom() {
+    return (
+      <AddSpeakEasyButton />
     );
   }
 
@@ -38,6 +45,7 @@ class Location extends React.Component {
       <div styleName="container">
         <h1 styleName="header">Speak Easies</h1>
         {this.renderSpeakEasies()}
+        {this.renderAddNewButtom()}
       </div>
     );
   }

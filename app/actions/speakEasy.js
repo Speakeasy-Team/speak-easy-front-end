@@ -1,7 +1,10 @@
+import { browserHistory } from 'react-router';
 import {
   REQUEST_SPEAK_EASIES,
   RECEIVE_SPEAK_EASIES,
   TAP_SPEAK_EASY,
+  SEND_POST_SPEAK_EASY,
+  RECEIVE_POST_SPEAK_EASY,
   API_URL,
 } from "../constants";
 
@@ -36,10 +39,10 @@ export function loadSpeakEasies() {
 
 export function tapSpeakEasy(speakEasyId) {
   return (dispatch, getState) => {
-    const state = getState();
+    const { speakEasies } = getState();
     let id;
 
-    if (state.speakEasies.activeId === speakEasyId) {
+    if (speakEasies.activeId === speakEasyId) {
       id = null;
     } else {
       id = speakEasyId;
@@ -49,5 +52,45 @@ export function tapSpeakEasy(speakEasyId) {
       type: TAP_SPEAK_EASY,
       id: id
     });
+  }
+}
+
+function sendPostSpeakEasy() {
+  return { type: SEND_POST_SPEAK_EASY }
+}
+
+function receivePostSpeakEasy() {
+  return { type: RECEIVE_POST_SPEAK_EASY }
+}
+
+export function postSpeakEasy(params) {
+  return dispatch => {
+    dispatch(sendPostSpeakEasy());
+
+    return fetch(`${API_URL}/locations`, buildRequest(params))
+      .then((response) => {
+        if (response.ok) {
+          return response
+        } else {
+          throw new Error(response.statusText)
+        }
+      })
+      .then(dispatch(receivePostSpeakEasy()))
+      .then(browserHistory.push("/speakeasies"))
+      .catch(reason => console.log(reason))
+  }
+}
+
+function buildRequest(params) {
+  return {
+    method: "post",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `bearer ${window.localStorage.getItem("jwt")}`
+    },
+    body: JSON.stringify({
+      location: params
+    })
   }
 }

@@ -1,0 +1,20 @@
+.container {
+  composes: form from "../patterns/form.css";
+  composes: container from "../patterns/container.css";
+}
+
+.inner-container {
+  margin: 1em;
+}
+
+.input {
+  margin: .5em;
+}
+
+.header {
+  composes: container-header from "../patterns/header.css";
+}
+
+.submit {
+  composes: button from '../patterns/button.css';
+}

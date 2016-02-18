@@ -10,9 +10,9 @@ class LocationListItem extends React.Component {
   }
 
   moreInfo() {
-    const { activeId, speakEasy: { id, cover_image_url } } = this.props;
+    const { active, speakEasy: { cover_image_url } } = this.props;
 
-    if (activeId === id)  {
+    if (active)  {
       return <img styleName="image" src={cover_image_url} />
     }
   }
