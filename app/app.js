@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 import Root from "./containers/Root";
 import SignIn from "./containers/SignIn";
-import Locations from "./containers/Locations";
+import SpeakEasies from "./containers/SpeakEasies";
 
 const store = configureStore();
 
@@ -15,7 +15,7 @@ render((
     <Router history={browserHistory}>
       <Route path="/" component={Root}>
         <IndexRoute component={SignIn} />
-        <Route path="/locations" component={Locations} />
+        <Route path="/speakeasies" component={SpeakEasies} />
       </Route>
     </Router>
   </Provider>

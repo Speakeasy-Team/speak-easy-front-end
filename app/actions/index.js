@@ -34,7 +34,7 @@ export function authorize(email, password) {
       })
       .then(res => res.json())
       .then(json => dispatch(receiveAuthorization(json)))
-      .then(() => browserHistory.push("/locations"))
+      .then(() => browserHistory.push("/speakeasies"))
       .catch(reason => console.log(reason))
       .done
   }

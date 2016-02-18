@@ -4,7 +4,11 @@ import {
   RECEIVE_AUTHORIZATION,
   RECEIVE_SPEAK_EASIES,
   REQUEST_SPEAK_EASIES,
+  TAP_SPEAK_EASY,
 } from "../constants";
+
+import update from "react/lib/update";
+import { merge } from "lodash";
 
 const initialState = {
   hamburgerToggled: false,
@@ -23,7 +27,6 @@ export function rootReducer(state = initialState, action) {
     case REQUEST_AUTHORIZATION:
       return Object.assign({}, state, { isRequestionAuth: true });
     case RECEIVE_AUTHORIZATION:
-      console.log(action);
       return Object.assign({}, state, {
         token: action.data.token,
       });
@@ -33,20 +36,21 @@ export function rootReducer(state = initialState, action) {
 }
 
 export function entityReducer(state = initialEntityState, action) {
+  if (action.response && action.response.entities) {
+    return merge({}, state, action.response.entities)
+  }
+
+  return state
+}
+
+export function speakEasyReducer(state = {}, action) {
   switch(action.type) {
     case RECEIVE_SPEAK_EASIES:
-      return Object.assign({}, state, {
-        speakEasies: {
-          isFetching: false,
-          data: action.json.data,
-        }
-      });
+      return Object.assign({}, state, { isFetching: false, });
     case REQUEST_SPEAK_EASIES:
-      return Object.assign({}, state, {
-        speakEasies: {
-          isFetching: true
-        }
-      });
+      return Object.assign({}, state, { isFetching: true });
+    case TAP_SPEAK_EASY:
+      return Object.assign({}, state, { activeId: action.id });
     default:
       return state;
   }
