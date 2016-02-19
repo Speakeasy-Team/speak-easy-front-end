@@ -1,40 +1,35 @@
 export const speakEasyAPI = {
   authorize: (email, password) => {
-    return (
-      fetch(`${API_URL}/sessions/`, buildPost({email: email, password: password}))
-        .then(handleResponse)
-        .then(res => res.json())
-    )
+    const options = {
+      requestType: "post",
+      params: { email: email, password: password }
+    }
+    return request("/sessions", options)
   },
 
   getSpeakEasies: () => {
-    return (
-      fetch(`${API_URL}/locations`)
-        .then(res => res.json())
-    )
+    return request("/locations")
   },
 
   postSpeakEasy: (params, token) => {
-    return (
-      fetch(`${API_URL}/locations/`, buildPost({ location: params }, token))
-        .then(handleResponse)
-        .then(res => res.json())
-    )
+    const options = {
+      requestType: "post",
+      params: { location: params },
+      token: token
+    }
+    return request("/locations", options)
   }
 }
 
 const API_URL = "http://localhost:4000";
 
-function buildPost(params, token) {
-  return {
-    method: "post",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `bearer ${token}`
-    },
-    body: JSON.stringify(params)
-  }
+function request(path, options = {}) {
+  const { params, requestType, token } = options;
+  const requestOptions = buildRequest(requestType, params, token);
+
+  return fetch(`${API_URL}${path}`, requestOptions)
+    .then(handleResponse)
+    .then(red => red.json())
 }
 
 function handleResponse(response) {
@@ -42,5 +37,17 @@ function handleResponse(response) {
     return response
   } else {
     throw new Error(response.statusText)
+  }
+}
+
+function buildRequest(responseType, params, token) {
+  return {
+    method: responseType || "get",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `bearer ${token}`
+    },
+    body: JSON.stringify(params)
   }
 }
