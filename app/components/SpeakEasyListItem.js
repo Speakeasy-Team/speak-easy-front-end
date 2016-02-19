@@ -1,6 +1,8 @@
 import React from "react";
 import CSSModules from "react-css-modules";
 import styles from "../styles/components/speak-easy-list-item.css";
+import Collapse from "react-collapse";
+import {presets} from 'react-motion';
 
 class LocationListItem extends React.Component {
   handleClick(e) {
@@ -18,13 +20,21 @@ class LocationListItem extends React.Component {
   }
 
   render() {
-    const { name, description } = this.props.speakEasy
+    const {
+      speakEasy: { name, description, cover_image_url },
+      active
+    } = this.props
 
     return (
       <div styleName="container" onClick={this.handleClick.bind(this)}>
         <div styleName="inner-container">
           <h1>{name}</h1>
-          {this.moreInfo()}
+          <Collapse
+            isOpened={active}
+            springConfig={{stiffness: 100, damping: 15, precision: 70}}
+          >
+            <img styleName="image" src={cover_image_url} />
+          </Collapse>
           <p>{description}</p>
         </div>
       </div>
