@@ -3,11 +3,24 @@ import {
   TOGGLE_HAMBURGER,
   REQUEST_AUTHORIZATION,
   RECEIVE_AUTHORIZATION,
-  API_URL
+  LOADED_APP,
+  SET_TOKEN,
+  API_URL,
 } from "../constants";
-import { setToken } from "../helpers/jwtToken";
+import { getToken } from "../helpers/jwtToken";
 
 const api_url = "http://localhost:4000";
+
+function setToken() {
+  return { type: SET_TOKEN, token: getToken() }
+}
+
+export function appLoaded() {
+  return dispatch => {
+    dispatch(setToken());
+    dispatch({ type: LOADED_APP });
+  }
+}
 
 export function toggleHamburger() {
   return { type: TOGGLE_HAMBURGER }
@@ -18,7 +31,6 @@ export function requestAuthorization(email, password) {
 }
 
 export function receiveAuthorization(json) {
-  setToken(json.token);
   return { type: RECEIVE_AUTHORIZATION, data: json }
 }
 

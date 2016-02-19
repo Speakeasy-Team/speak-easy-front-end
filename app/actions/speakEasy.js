@@ -8,7 +8,6 @@ import {
   API_URL,
 } from "../constants";
 import { normalize, Schema, arrayOf } from 'normalizr';
-import { getToken } from "../helpers/jwtToken";
 
 const speakEasy = new Schema('speakEasies');
 
@@ -64,10 +63,11 @@ function receivePostSpeakEasy() {
 }
 
 export function postSpeakEasy(params) {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const { root: { token } } = getState();
     dispatch(sendPostSpeakEasy());
 
-    return fetch(`${API_URL}/locations`, buildRequest(params))
+    return fetch(`${API_URL}/locations`, buildRequest(params, token))
       .then((response) => {
         if (response.ok) {
           return response
@@ -81,13 +81,13 @@ export function postSpeakEasy(params) {
   }
 }
 
-function buildRequest(params) {
+function buildRequest(params, token) {
   return {
     method: "post",
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `bearer ${getToken()}`
+      'Authorization': `bearer ${token}`
     },
     body: JSON.stringify({
       location: params
