@@ -2,7 +2,6 @@ import React from "react";
 import CSSModules from "react-css-modules";
 import styles from "../styles/components/speak-easy-list-item.css";
 import Collapse from "react-collapse";
-import {presets} from 'react-motion';
 
 class LocationListItem extends React.Component {
   handleClick(e) {

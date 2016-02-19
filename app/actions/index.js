@@ -1,10 +1,11 @@
-import { browserHistory } from 'react-router';
+import { browserHistory } from "react-router";
 import {
   TOGGLE_HAMBURGER,
   REQUEST_AUTHORIZATION,
   RECEIVE_AUTHORIZATION,
   API_URL
-} from "../constants"
+} from "../constants";
+import { setToken } from "../helpers/jwtToken";
 
 const api_url = "http://localhost:4000";
 
@@ -17,7 +18,7 @@ export function requestAuthorization(email, password) {
 }
 
 export function receiveAuthorization(json) {
-  window.localStorage.setItem("jwt", json.token);
+  setToken(json.token);
   return { type: RECEIVE_AUTHORIZATION, data: json }
 }
 

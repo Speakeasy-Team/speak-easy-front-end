@@ -7,8 +7,8 @@ import {
   RECEIVE_POST_SPEAK_EASY,
   API_URL,
 } from "../constants";
-
 import { normalize, Schema, arrayOf } from 'normalizr';
+import { getToken } from "../helpers/jwtToken";
 
 const speakEasy = new Schema('speakEasies');
 
@@ -87,7 +87,7 @@ function buildRequest(params) {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `bearer ${window.localStorage.getItem("jwt")}`
+      'Authorization': `bearer ${getToken()}`
     },
     body: JSON.stringify({
       location: params
