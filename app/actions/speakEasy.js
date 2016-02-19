@@ -1,13 +1,8 @@
-import { browserHistory } from 'react-router';
-import {
-  REQUEST_SPEAK_EASIES,
-  RECEIVE_SPEAK_EASIES,
-  TAP_SPEAK_EASY,
-  SEND_POST_SPEAK_EASY,
-  RECEIVE_POST_SPEAK_EASY,
-  API_URL,
-} from "../constants";
-import { normalize, Schema, arrayOf } from 'normalizr';
+import { browserHistory } from "react-router";
+import { REQUEST_SPEAK_EASIES, RECEIVE_SPEAK_EASIES, TAP_SPEAK_EASY,
+  SEND_POST_SPEAK_EASY, RECEIVE_POST_SPEAK_EASY, API_URL, } from "../constants";
+import { normalize, Schema, arrayOf } from "normalizr";
+import { speakEasyAPI } from "../services/speakEasyAPI";
 
 const speakEasy = new Schema('speakEasies');
 
@@ -30,8 +25,7 @@ export function loadSpeakEasies() {
   return dispatch => {
     dispatch(requestSpeakEasies());
 
-    return fetch(`${API_URL}/locations`)
-      .then(res => res.json())
+    return speakEasyAPI.getSpeakEasies()
       .then(json => dispatch(receiveSpeakEasies(json)));
   }
 }
@@ -67,30 +61,11 @@ export function postSpeakEasy(params) {
     const { root: { token } } = getState();
     dispatch(sendPostSpeakEasy());
 
-    return fetch(`${API_URL}/locations`, buildRequest(params, token))
-      .then((response) => {
-        if (response.ok) {
-          return response
-        } else {
-          throw new Error(response.statusText)
-        }
-      })
-      .then(dispatch(receivePostSpeakEasy()))
-      .then(browserHistory.push("/speakeasies"))
-      .catch(reason => console.log(reason))
-  }
-}
-
-function buildRequest(params, token) {
-  return {
-    method: "post",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `bearer ${token}`
-    },
-    body: JSON.stringify({
-      location: params
-    })
+    return (
+      speakEasyAPI.postSpeakEasy(params, token)
+        .then(dispatch(receivePostSpeakEasy()))
+        .then(browserHistory.push("/speakeasies"))
+        .catch(reason => console.log(reason))
+    )
   }
 }
