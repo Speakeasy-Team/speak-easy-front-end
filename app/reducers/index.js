@@ -5,6 +5,7 @@ import {
   RECEIVE_SPEAK_EASIES,
   REQUEST_SPEAK_EASIES,
   TAP_SPEAK_EASY,
+  SET_TOKEN,
 } from "../constants";
 
 import update from "react/lib/update";
@@ -29,6 +30,10 @@ export function rootReducer(state = initialState, action) {
     case RECEIVE_AUTHORIZATION:
       return Object.assign({}, state, {
         token: action.data.token,
+      });
+    case SET_TOKEN:
+      return Object.assign({}, state, {
+        token: action.token
       });
     default:
       return state;

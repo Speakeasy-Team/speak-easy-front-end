@@ -11,9 +11,7 @@
 }
 
 .header {
-  margin: 0;
-  padding-bottom: 1em;
-  text-align: center;
+  composes: container-header from "../patterns/header.css";
 }
 
 .input {

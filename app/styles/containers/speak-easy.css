@@ -3,5 +3,5 @@
 }
 
 .header {
-  text-align: center;
+  composes: container-header from "../patterns/header.css";
 }

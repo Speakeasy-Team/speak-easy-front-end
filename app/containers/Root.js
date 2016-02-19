@@ -2,11 +2,17 @@ import React from "react";
 import styles from "../styles/containers/root.css";
 import CSSModules from "react-css-modules";
 import { connect } from "react-redux";
-import { toggleHamburger } from "../actions";
+import { toggleHamburger, appLoaded } from "../actions";
 import Navigation from "../components/Navigation";
 import Hamburger from "../components/Hamburger";
 
 class Root extends React.Component {
+  componentDidMount() {
+    const { dispatch } = this.props;
+
+    dispatch(appLoaded());
+  }
+
   handleClick() {
     const { dispatch, hamburgerToggled } = this.props;
 
@@ -34,7 +40,10 @@ class Root extends React.Component {
       <div styleName="app">
         <nav styleName="nav">
           <h1 styleName="header">Easy Speak</h1>
-          <Hamburger active={hamburgerToggled} onClick={this.onHamburgerClick.bind(this)} />
+          <Hamburger
+            active={hamburgerToggled}
+            onClick={this.onHamburgerClick.bind(this)}
+          />
         </nav>
         {this.renderNav()}
         <div onClick={this.handleClick.bind(this)}>

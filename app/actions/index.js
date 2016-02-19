@@ -1,12 +1,27 @@
-import { browserHistory } from 'react-router';
+import { browserHistory } from "react-router";
 import {
   TOGGLE_HAMBURGER,
   REQUEST_AUTHORIZATION,
   RECEIVE_AUTHORIZATION,
-  API_URL
-} from "../constants"
+  LOADED_APP,
+  SET_TOKEN,
+  API_URL,
+} from "../constants";
+import { getToken } from "../helpers/jwtToken";
+import { speakEasyAPI } from "../services/speakEasyAPI";
 
 const api_url = "http://localhost:4000";
+
+function setToken() {
+  return { type: SET_TOKEN, token: getToken() }
+}
+
+export function appLoaded() {
+  return dispatch => {
+    dispatch(setToken());
+    dispatch({ type: LOADED_APP });
+  }
+}
 
 export function toggleHamburger() {
   return { type: TOGGLE_HAMBURGER }
@@ -24,32 +39,12 @@ export function authorize(email, password) {
   return dispatch => {
     dispatch(requestAuthorization());
 
-    return fetch(`${API_URL}/sessions/`, buildAuthRequest(email, password))
-      .then((response) => {
-        if (response.ok) {
-          return response
-        } else {
-          throw new Error(response.statusText)
-        }
-      })
-      .then(res => res.json())
+    return (
+      speakEasyAPI.authorize(email, password)
       .then(json => dispatch(receiveAuthorization(json)))
       .then(() => browserHistory.push("/speakeasies"))
       .catch(reason => console.log(reason))
       .done
-  }
-}
-
-function buildAuthRequest(email, password) {
-  return {
-    method: "post",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      email: email,
-      password: password
-    })
+    )
   }
 }
