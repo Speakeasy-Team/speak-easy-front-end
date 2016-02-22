@@ -1,8 +1,11 @@
 import { browserHistory } from "react-router";
-import { REQUEST_SPEAK_EASIES, RECEIVE_SPEAK_EASIES, TAP_SPEAK_EASY,
-  SEND_POST_SPEAK_EASY, RECEIVE_POST_SPEAK_EASY, API_URL, } from "../constants";
+import {
+  REQUEST_SPEAK_EASIES, RECEIVE_SPEAK_EASIES, TAP_SPEAK_EASY,
+  SEND_POST_SPEAK_EASY, RECEIVE_POST_SPEAK_EASY, API_URL,
+  SEND_UPDATE_SPEAK_EASY, RECEIVE_UPDATE_SPEAK_EASY
+} from "../constants";
 import { normalize, Schema, arrayOf } from "normalizr";
-import { speakEasyAPI } from "../services/speakEasyAPI";
+import { speakEasyApi } from "../services/speakEasyApi";
 
 const speakEasy = new Schema('speakEasies');
 
@@ -25,7 +28,7 @@ export function loadSpeakEasies() {
   return dispatch => {
     dispatch(requestSpeakEasies());
 
-    return speakEasyAPI.getSpeakEasies()
+    return speakEasyApi.getSpeakEasies()
       .then(json => dispatch(receiveSpeakEasies(json)));
   }
 }
@@ -62,9 +65,31 @@ export function postSpeakEasy(params) {
     dispatch(sendPostSpeakEasy());
 
     return (
-      speakEasyAPI.postSpeakEasy(params, token)
-        .then(dispatch(receivePostSpeakEasy()))
-        .then(browserHistory.push("/speakeasies"))
+      speakEasyApi.postSpeakEasy(params, token)
+        .then(() => dispatch(receivePostSpeakEasy()))
+        .then(() => browserHistory.push("/speakeasies"))
+        .catch(reason => console.log(reason))
+    )
+  }
+}
+
+function sendUpdateSpeakEasy() {
+  return { type: SEND_UPDATE_SPEAK_EASY }
+}
+
+function receiveUpdateSpeakEasy() {
+  return { type: RECEIVE_UPDATE_SPEAK_EASY }
+}
+
+export function updateSpeakEasy(id, params) {
+  return (dispatch, getState) => {
+    const { root: { token } } = getState();
+    dispatch(sendUpdateSpeakEasy());
+
+    return (
+      speakEasyApi.updateSpeakEasy(id, params, token)
+        .then(() => dispatch(receiveUpdateSpeakEasy()))
+        .then(() => browserHistory.push("/speakeasies"))
         .catch(reason => console.log(reason))
     )
   }

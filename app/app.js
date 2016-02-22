@@ -8,6 +8,7 @@ import Root from "./containers/Root";
 import SignIn from "./containers/SignIn";
 import SpeakEasies from "./containers/SpeakEasies";
 import SpeakEasyForm from "./components/SpeakEasyForm";
+import SpeakEasyFormContainer from "./containers/SpeakEasyFormContainer";
 
 const store = configureStore();
 
@@ -17,7 +18,8 @@ render((
       <Route path="/" component={Root}>
         <IndexRoute component={SignIn} />
         <Route path="/speakeasies" component={SpeakEasies} />
-        <Route path="/speakeasies/new" component={SpeakEasyForm} />
+        <Route path="/speakeasies/new" component={SpeakEasyFormContainer} />
+        <Route path="/speakeasies/:id/edit" component={SpeakEasyFormContainer} />
       </Route>
     </Router>
   </Provider>

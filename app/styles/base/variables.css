@@ -8,7 +8,7 @@
 
 @value base-border-radius: 3px;
 @value base-spacing: calc(base-line-height * 1em);
-@value small-spacing: calc(base-spacing / 2);
+@value small-spacing: calc(base-spacing / 3);
 @value base-z-index: 0;
 
 @value blue: #1565c0;

@@ -1,11 +1,9 @@
 @import "normalize.css/normalize.css";
 @value variables: "../base/variables.css";
-@value base-background-color from variables;
-@value base-border from variables;
-@value orange from variables;
+@value base-background-color, base-border, action-color, base-spacing, small-spacing from variables;
 
 .app {
-  height: 100vh;
+  min-height: 100vh;
   background-color: base-background-color;
 }
 
@@ -17,8 +15,12 @@
 
 .header {
   margin: 0;
-  padding: .3em;
+  padding: small-spacing;
   color: black;
   float: left;
-  color: orange;
+  color: action-color;
+}
+
+.footer {
+  padding: base-spacing;
 }
