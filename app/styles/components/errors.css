@@ -1,0 +1,15 @@
+@value variables: "../base/variables.css";
+@value base-error-color, base-spacing from variables;
+
+.error {
+  list-style: none inside none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: base-error-color;
+}
+
+.errors-list {
+  margin: base-spacing 0;
+  padding: 0;
+}

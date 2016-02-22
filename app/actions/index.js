@@ -24,25 +24,3 @@ export function appLoaded() {
 export function toggleHamburger() {
   return { type: TOGGLE_HAMBURGER }
 }
-
-export function requestAuthorization(email, password) {
-  return { type: REQUEST_AUTHORIZATION }
-}
-
-export function receiveAuthorization(json) {
-  return { type: RECEIVE_AUTHORIZATION, data: json }
-}
-
-export function authorize(email, password) {
-  return dispatch => {
-    dispatch(requestAuthorization());
-
-    return (
-      speakEasyApi.authorize(email, password)
-        .then(json => dispatch(receiveAuthorization(json)))
-        .then(() => browserHistory.push("/speakeasies"))
-        .catch(reason => console.log(reason))
-        .done
-    )
-  }
-}

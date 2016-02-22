@@ -1,11 +1,7 @@
 import {
-  TOGGLE_HAMBURGER,
-  REQUEST_AUTHORIZATION,
-  RECEIVE_AUTHORIZATION,
-  RECEIVE_SPEAK_EASIES,
-  REQUEST_SPEAK_EASIES,
-  TAP_SPEAK_EASY,
-  SET_TOKEN,
+  TOGGLE_HAMBURGER, REQUEST_AUTHORIZATION, RECEIVE_AUTHORIZATION,
+  RECEIVE_SPEAK_EASIES, REQUEST_SPEAK_EASIES, TAP_SPEAK_EASY, SET_TOKEN,
+  FAILED_AUTHORIZATION,
 } from "../constants";
 
 import update from "react/lib/update";
@@ -25,12 +21,6 @@ export function rootReducer(state = initialState, action) {
       return Object.assign({}, state, {
         hamburgerToggled: !state.hamburgerToggled
       });
-    case REQUEST_AUTHORIZATION:
-      return Object.assign({}, state, { isRequestionAuth: true });
-    case RECEIVE_AUTHORIZATION:
-      return Object.assign({}, state, {
-        token: action.data.token,
-      });
     case SET_TOKEN:
       return Object.assign({}, state, {
         token: action.token
@@ -40,12 +30,19 @@ export function rootReducer(state = initialState, action) {
   }
 }
 
-export function entityReducer(state = initialEntityState, action) {
-  if (action.response && action.response.entities) {
-    return merge({}, state, action.response.entities)
+export function authorizationReducer(state = {}, action) {
+  switch(action.type) {
+    case REQUEST_AUTHORIZATION:
+      return Object.assign({}, state, {
+        isRequesting: true,
+      });
+    case RECEIVE_AUTHORIZATION:
+      return Object.assign({}, state, {
+        isRequesting: false
+      });
+    default:
+      return state;
   }
-
-  return state
 }
 
 export function speakEasyReducer(state = {}, action) {
@@ -59,4 +56,12 @@ export function speakEasyReducer(state = {}, action) {
     default:
       return state;
   }
+}
+
+export function entityReducer(state = initialEntityState, action) {
+  if (action.response && action.response.entities) {
+    return merge({}, state, action.response.entities)
+  }
+
+  return state
 }
