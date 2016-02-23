@@ -1,5 +1,5 @@
 @value variables: "../base/variables.css";
-@value base-border from variables;
+@value base-border, small-spacing, base-spacing from variables;
 
 .container {
   composes: form from '../patterns/form.css';
@@ -7,7 +7,7 @@
 }
 
 .inner-container {
-  margin: 1em;
+  margin: base-spacing;
 }
 
 .header {
@@ -15,7 +15,7 @@
 }
 
 .input {
-  margin: .5em;
+  margin: small-spacing;
 }
 
 .submit {

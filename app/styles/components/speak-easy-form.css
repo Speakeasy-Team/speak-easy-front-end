@@ -1,14 +1,17 @@
+@value variables: "../base/variables.css";
+@value base-spacing, small-spacing from variables;
+
 .container {
   composes: form from "../patterns/form.css";
   composes: container from "../patterns/container.css";
 }
 
 .inner-container {
-  margin: 1em;
+  margin: base-spacing;
 }
 
 .input {
-  margin: .5em;
+  margin: small-spacing;
 }
 
 .header {
