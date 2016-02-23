@@ -1,23 +1,33 @@
 import React from "react";
 import CSSModules from "react-css-modules";
 import styles from "../styles/containers/sign-in.css";
-import { authorize } from "../actions";
+import { authorize } from "../actions/authorization";
 import { reduxForm } from "redux-form";
+import Errors from "../components/Errors";
 
 class SignIn extends React.Component {
   handleSubmission(e) {
     e.preventDefault();
-    const { dispatch, fields: { email, password } } = this.props;
+    const {
+      dispatch,
+      fields: { email, password }
+    } = this.props;
     dispatch(authorize(email.value, password.value));
   }
 
   render () {
-    const {fields: {email, password}} = this.props;
+    const {
+      fields: {email, password},
+      handleSubmit,
+      error
+    } = this.props;
 
     return (
-      <form styleName="container" onSubmit={this.handleSubmission.bind(this)}>
+      <form styleName="container" onSubmit={handleSubmit(authorize)}>
+
         <div styleName="inner-container">
           <h1 styleName="header">Sign In</h1>
+          <Errors errors={error} />
 
           <label name="email">
             Email
