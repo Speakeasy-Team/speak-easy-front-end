@@ -8,7 +8,7 @@
 
 @value base-border-radius: 3px;
 @value base-spacing: calc(base-line-height * 1em);
-@value small-spacing: calc(base-spacing / 2);
+@value small-spacing: calc(base-spacing / 3);
 @value base-z-index: 0;
 
 @value blue: #1565c0;
@@ -29,3 +29,12 @@
 
 @value base-duration: 150ms;
 @value base-timing: ease;
+
+@value scale-down-1: 0.6180339887498948;
+@value scale-down-2: 0.3819660112501051;
+@value scale-down-3: 0.23606797749978967;
+
+@value scale-up-1: 1.618033988749895;
+@value scale-up-2: 2.618033988749895;
+@value scale-up-3: 4.23606797749979;
+@value scale-up-4: 6.854101966249685;

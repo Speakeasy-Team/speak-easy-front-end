@@ -2,18 +2,29 @@ import React from "react";
 import CSSModules from "react-css-modules";
 import styles from "../styles/components/speak-easy-form.css";
 import { reduxForm } from "redux-form";
-import { postSpeakEasy } from "../actions/speakEasy";
+import { postSpeakEasy, updateSpeakEasy } from "../actions/speakEasy";
 import { getValues } from 'redux-form';
 
 class SpeakEasyForm extends React.Component {
   handleSubmission(e) {
     e.preventDefault();
-    const { dispatch, values } = this.props;
-    dispatch(postSpeakEasy(values));
+    const {
+      id,
+      dispatch,
+      values,
+      update,
+    } = this.props;
+
+    if (update) {
+      dispatch(updateSpeakEasy(id, values));
+    } else {
+      dispatch(postSpeakEasy(values));
+    }
   }
 
   render() {
     const {
+      update,
       fields:
         {
           name,
@@ -27,7 +38,7 @@ class SpeakEasyForm extends React.Component {
     return (
       <form styleName="container" onSubmit={this.handleSubmission.bind(this)}>
         <div styleName="inner-container">
-          <h1 styleName="header">New Speak Easy</h1>
+          <h1>{update ? `Edit ${name.defaultValue}` : "Create Speak Easy"}</h1>
 
           <label name="name">
             Name
@@ -73,7 +84,7 @@ class SpeakEasyForm extends React.Component {
             />
           </label>
 
-          <input type="submit" value="Create" styleName="submit" />
+          <input type="submit" value={update ? "Update" : "Create"} styleName="submit" />
         </div>
       </form>
     )
@@ -83,7 +94,7 @@ class SpeakEasyForm extends React.Component {
 const wrappedForm = CSSModules(SpeakEasyForm, styles);
 
 export default reduxForm({
-  form: "speakEasyNew",
+  form: "speakEasy",
   fields: [
     "name",
     "description",

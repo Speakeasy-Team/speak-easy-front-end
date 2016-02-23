@@ -8,9 +8,7 @@ import {
   API_URL,
 } from "../constants";
 import { getToken } from "../helpers/jwtToken";
-import { speakEasyAPI } from "../services/speakEasyAPI";
-
-const api_url = "http://localhost:4000";
+import { speakEasyApi } from "../services/speakEasyApi";
 
 function setToken() {
   return { type: SET_TOKEN, token: getToken() }
@@ -40,11 +38,11 @@ export function authorize(email, password) {
     dispatch(requestAuthorization());
 
     return (
-      speakEasyAPI.authorize(email, password)
-      .then(json => dispatch(receiveAuthorization(json)))
-      .then(() => browserHistory.push("/speakeasies"))
-      .catch(reason => console.log(reason))
-      .done
+      speakEasyApi.authorize(email, password)
+        .then(json => dispatch(receiveAuthorization(json)))
+        .then(() => browserHistory.push("/speakeasies"))
+        .catch(reason => console.log(reason))
+        .done
     )
   }
 }

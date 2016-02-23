@@ -1,4 +1,6 @@
-export const speakEasyAPI = {
+import fetch from "isomorphic-fetch";
+
+export const speakEasyApi = {
   authorize: (email, password) => {
     const options = {
       requestType: "post",
@@ -18,7 +20,16 @@ export const speakEasyAPI = {
       token: token
     }
     return request("/locations", options)
-  }
+  },
+
+  updateSpeakEasy: (id, params, token) => {
+    const options = {
+      requestType: "put",
+      params: { location: params },
+      token: token
+    }
+    return request(`/locations/${id}`, options)
+  },
 }
 
 const API_URL = "http://localhost:4000";
@@ -29,7 +40,7 @@ function request(path, options = {}) {
 
   return fetch(`${API_URL}${path}`, requestOptions)
     .then(handleResponse)
-    .then(red => red.json())
+    .then(res => res.json())
 }
 
 function handleResponse(response) {

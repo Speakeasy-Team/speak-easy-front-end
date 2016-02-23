@@ -1,9 +1,12 @@
+@value variables: "../base/variables.css";
+@value base-font-size, base-border, action-color, base-spacing, small-spacing, scale-up-1 from variables;
+
 .nav-list-item {
   list-style-type: none;
   text-align: center;
   margin: 0;
-  font-size: 1.5em;
-  padding: .5em;
+  font-size: calc(base-font-size * scale-up-1);
+  padding: small-spacing;
   &:hover {
     background-color: white;
   }

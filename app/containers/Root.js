@@ -49,6 +49,7 @@ class Root extends React.Component {
         <div onClick={this.handleClick.bind(this)}>
           {this.props.children}
         </div>
+        <footer styleName="footer" />
       </div>
     );
   };

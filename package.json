@@ -26,6 +26,7 @@
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.5.0",
     "normalize.css": "^3.0.3",
     "normalizr": "^2.0.0",
