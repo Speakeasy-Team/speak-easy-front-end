@@ -13,7 +13,8 @@ class LocationListItem extends React.Component {
 
   render() {
     const {
-      speakEasy: { name, description, cover_image_url, id },
+      id,
+      speakEasy: { attributes: { name, description, coverImageUrl } },
       active
     } = this.props
 
@@ -26,7 +27,7 @@ class LocationListItem extends React.Component {
             isOpened={active}
             springConfig={{stiffness: 100, damping: 15, precision: 70}}
           >
-            <img styleName="image" src={cover_image_url} />
+            <img styleName="image" src={coverImageUrl} />
             <Link to={`/speakeasies/${id}/edit`}>Edit</Link>
           </Collapse>
         </div>

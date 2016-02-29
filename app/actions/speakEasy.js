@@ -6,6 +6,7 @@ import {
 } from "../constants";
 import { normalize, Schema, arrayOf } from "normalizr";
 import { speakEasyApi } from "../services/speakEasyApi";
+import { entitize } from "../services/entitizer";
 
 const speakEasy = new Schema('speakEasies');
 
@@ -14,10 +15,7 @@ function requestSpeakEasies() {
 }
 
 function receiveSpeakEasies(json) {
-  const response = normalize(json, {
-    data: arrayOf(speakEasy)
-  });
-
+  const response = entitize(json);
   return {
     type: RECEIVE_SPEAK_EASIES,
     response
