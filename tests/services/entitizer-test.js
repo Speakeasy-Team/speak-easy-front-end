@@ -12,6 +12,7 @@ test("entitizer extracts json", (t) => {
     entities: {
       articles: {
         1: {
+          "id": "1",
           "title": "JSON API paints my bikeshed!",
           "body": "The shortest article. Ever.",
           "created": "2015-05-22T14:56:29.000Z",
@@ -26,6 +27,7 @@ test("entitizer extracts json", (t) => {
       },
       people: {
         42: {
+          "id": "42",
           "name": "John",
           "age": 80,
           "gender": "male",
@@ -34,6 +36,7 @@ test("entitizer extracts json", (t) => {
       },
       books: {
         3: {
+          "id": "3",
           "title": "Hello world",
           "blurb": "It's the greatest",
           "created": "2015-05-22T14:56:29.000Z",
@@ -41,6 +44,7 @@ test("entitizer extracts json", (t) => {
           "relationships": {},
         },
         4: {
+          "id": "4",
           "title": "Javascript can be good sometimes",
           "blurb": "and sometimes it hurts",
           "created": "2015-05-22T14:56:29.000Z",
@@ -76,6 +80,7 @@ test("entitizer sets the attributes and relationships", (t) => {
   const response = entitize(testJson);
   const article = response.entities.articles[1]
   const expectedArticle = {
+    "id": "1",
     "title": "JSON API paints my bikeshed!",
     "body": "The shortest article. Ever.",
     "created": "2015-05-22T14:56:29.000Z",

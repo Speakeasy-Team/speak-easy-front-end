@@ -31,7 +31,7 @@ function createMisingType(entities, type) {
 
 function setRecord(result, type, id, attributes) {
   const newRecord = {
-    [type]: { [id]: attributes }
+    [type]: { [id]: merge({}, {id: id}, attributes) }
   };
 
   return merge({}, result, newRecord);

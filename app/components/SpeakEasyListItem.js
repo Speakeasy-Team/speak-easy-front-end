@@ -14,7 +14,7 @@ class LocationListItem extends React.Component {
   render() {
     const {
       id,
-      speakEasy: { attributes: { name, description, coverImageUrl } },
+      speakEasy: { name, description, coverImageUrl },
       active
     } = this.props
 

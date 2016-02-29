@@ -26,7 +26,7 @@ class SpeakEasyFormContainer extends React.Component {
 
 const select = (state) => {
   return {
-    speakEasies: state.entities.speakEasies || []
+    speakEasies: state.entities.location || []
   }
 }
 

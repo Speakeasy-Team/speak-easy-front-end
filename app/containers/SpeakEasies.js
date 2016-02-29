@@ -53,7 +53,7 @@ class Location extends React.Component {
 
 const select = (state) => {
   return {
-    speakEasies: state.entities.location || [],
+    speakEasies: state.entities.location || {},
     activeId: state.speakEasies.activeId
   }
 };

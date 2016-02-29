@@ -4,11 +4,8 @@ import {
   SEND_POST_SPEAK_EASY, RECEIVE_POST_SPEAK_EASY, API_URL,
   SEND_UPDATE_SPEAK_EASY, RECEIVE_UPDATE_SPEAK_EASY
 } from "../constants";
-import { normalize, Schema, arrayOf } from "normalizr";
 import { speakEasyApi } from "../services/speakEasyApi";
 import { entitize } from "../services/entitizer";
-
-const speakEasy = new Schema('speakEasies');
 
 function requestSpeakEasies() {
   return { type: REQUEST_SPEAK_EASIES }
