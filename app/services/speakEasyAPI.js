@@ -55,8 +55,8 @@ function buildRequest(responseType, params, token) {
   return {
     method: responseType || "get",
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+      'Accept': 'application/vnd.api+json',
+      'Content-Type': 'application/vnd.api+json',
       'Authorization': `bearer ${token}`
     },
     body: JSON.stringify(params)

@@ -12,7 +12,7 @@ const initialState = {
 };
 
 const initialEntityState = {
-  speakEasies: {}
+  location: {}
 }
 
 export function rootReducer(state = initialState, action) {
