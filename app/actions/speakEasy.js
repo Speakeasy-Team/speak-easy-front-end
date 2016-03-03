@@ -5,7 +5,7 @@ import {
   SEND_UPDATE_SPEAK_EASY, RECEIVE_UPDATE_SPEAK_EASY
 } from "../constants";
 import { speakEasyApi } from "../services/speakEasyApi";
-import { entitize } from "../services/entitizer";
+import { entitize } from "json-api-entitizer";
 
 function requestSpeakEasies() {
   return { type: REQUEST_SPEAK_EASIES }
